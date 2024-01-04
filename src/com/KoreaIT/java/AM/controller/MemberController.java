@@ -1,9 +1,9 @@
 package com.KoreaIT.java.AM.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.KoreaIT.java.AM.Container;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
 
@@ -15,7 +15,7 @@ public class MemberController extends Controller {
 	int lastMemberId = 3;
 
 	public MemberController(Scanner sc) {
-		this.members = new ArrayList<>();
+		this.members = Container.memberDao.members;
 		this.sc = sc;
 	}
 
@@ -27,17 +27,9 @@ public class MemberController extends Controller {
 			doJoin();
 			break;
 		case "login":
-			if (isLogined()) {
-				System.out.println("이미 로그인 상태야");
-				return;
-			}
 			doLogin();
 			break;
 		case "logout":
-			if (!isLogined()) {
-				System.out.println("이미 로그아웃 상태야");
-				return;
-			}
 			doLogout();
 			break;
 		default:
